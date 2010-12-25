@@ -1,0 +1,596 @@
+\chapter{Code}
+\label{Code}
+The tests described in \ref{TOST} and \ref{Bootstrap} are encoded into R \cite{R} - relying on commands from the software package LIMMA \cite{LIMMA}. Interpretation of R commands will be done as they appear. However, it is useful to keep a few things in mind:
+\begin{enumerate}
+\item \# : Begins a comment. R ignores everything on a line following a \#
+\item \texttt{<-} : The assignment operator, equivalent to ``=".
+\item \texttt{M[a,b]} : for a matrix, picks out the element of $M$ in the $a^{th}$ row and $b^{th}$ column.
+\item \texttt{List\$name} : picks out the element of the list ``List" with the name ``name"
+\item \texttt{!} : logical not i.e. ``!=" is ``$\neq$"
+\item \texttt{\&} : logical and
+\item \texttt{$|$} : logical or
+\end{enumerate}
+
+The last thing to note is that R recognizes the Boolean values-- \texttt{TRUE} and \texttt{FALSE} as one and zero respectively. Hence if  $F$ is a vector (or matrix) of Boolean values, the R command 
+\begin{center}
+\begin{verbatim}
+sum(F)
+\end{verbatim}
+\end{center}
+will count the number of times an entry of $F$ is true.
+
+Additionally, LIMMA has a set of built in functions and function names which will be explained as we go. For now, note that \texttt{MA} is a list that holds, among other things, the relative dye ratios, under the name \texttt{M}. Hence the command \texttt{MA\$M} calls up the relative dye intensities from which we infer relative gene expression levels. To fit a linear model to this data, rather than use the standard LIMMA command \texttt{lmFit()}, the command \texttt{LMFit()} was used because it accounts for a changing design matrix due to missing data. The \texttt{LMFit()} function was written by Albyn Jones for the Renn/Jones Laboratory during the Summer of 2010. 
+
+There are six function below, three used in artificial data analysis, and three designed for analysis of real data using the LIMMA package.  Because the $t$ test was developed first, functions for its implementation are referred to with TOST, while the Bootstrap two one sided test is referred to as the bootstrap. The functions for artificial data are \texttt{toeTOST()}, \texttt{toeBoot()}, and \texttt{toePower()}.  \texttt{toeTOST()} and \texttt{toeBoot()} apply the t-test and bootstrap tests of equivalence. Their arguments are input vectors \texttt{x} and \texttt{y}, the number of Bootstrap replicates \texttt{B}, and  the significance level \texttt{alpha}, and the tolerable level of difference, \texttt{eps}. They return \texttt{TRUE} whenever the corresponding test rejects the null. The \texttt{toePower()} function generates data sets, calls \texttt{toeTOST()} and \texttt{toeBoot()}, applying each \texttt{Reps} times, and calculating the proportion of times each test returns \texttt{TRUE}.
+
+The three functions for real data apply the TOST and the bootstrap to microarray data. The first function, \texttt{tEQ()} applies the TOST. The second function, \texttt{phenoBoots()}, produces bootstrap distributions from the microarray data sets, and the third function, \texttt{bootEQ()} calls \texttt{phenoBoots()} and returns p-values for each feature on the array. These functions return a list of significance levels for the equivalence of expression in each source, so as to be consistent with the test of difference functions written into LIMMA. 
+
+
+\section{Artificial Data Analysis}
+\subsection{TOST}
+\subsubsection{toeTOST()}
+\label{sect:artificial}
+\begin{verbatim}
+
+toeTOST <- function(x, y, eps=1, alpha=.05)
+{
+
+#toeTOST is a function of the data, x and y; of 
+#epsilon, the limit of the equivalence interval; 
+#and the significance level, alpha.
+#The values in the statement of the function 
+#are the default values the function will take on.
+
+mx <- mean(x) 				
+my <- mean(y)			
+	
+#Mean of x and y
+
+dfx <- length(x)-1			
+dfy <- length(y)-1			
+
+#The degrees of freedom in x and y.
+
+dft <- dfx+dfy				
+
+#The degrees of freedom of the difference in x and y.
+
+se <- sqrt( ( SSQ(x)+SSQ(y) ) / dft  ) * sqrt( (1/ (dfx+1)) + (1/(dfy+1)) )
+						
+						#The standard error of the difference in means. 
+						#SSQ is the sum of squares of the x's, an 
+						#auxiliary function defined just below
+						
+Qt <- qt(1-alpha/2,dft)			
+
+#qt is the 1-alpha/2 quantile of the student's t distribution 
+#with dft degrees of freedom
+
+if(eps < abs(mx-my)) FALSE	
+						
+						#If the difference is bigger than epsilon, 
+						#clearly the null is not rejected
+						
+else ( eps > abs(mx-my) + Qt * se  )
+						
+						#Otherwise apply the test as described 
+						#in Chapter 2.
+}
+
+SSQ <- function(x) sum( (x-mean(x))^2)
+							
+							#Sum of squared differences from the mean. 
+							
+\subsection{Bootstrap}
+
+\subsubsection{toeBoot()}							
+toeBoot <- function(x,y,eps=1,alpha=.05,B=1000)
+
+#The bootstrap has the same arguments as the TOST, 
+#with the addition of B, the number of bootstrap repetitions.
+
+{
+
+if( abs(mean(x)-mean(y)) > eps ) FALSE 
+							
+							# If  the difference in means is outside the null, we 							# cannot reject the null
+
+else
+{
+nx <- length(x)
+ny <- length(y)					
+
+#nx and ny are the number 
+#of samples we must draw.
+
+bx <- sample(x, size = B*nx, replace = TRUE)
+by <- sample(y, size = B*ny, replace = TRUE)	
+
+#bx and by hold the resampled values.
+
+Mx <- matrix(bx, nrow = nx, ncol = B)
+My <- matrix(by, nrow = ny, ncol = B)	
+							
+							#Matrices to hold the resampled values
+							
+onex <- matrix(1, nrow = 1, ncol = nx)
+oney <- matrix(1, nrow = 1, ncol = ny)
+ 
+							#vectors of length equal to the
+							#length of the x's or the y's
+							
+Ex <- onex %*% Mx / nx			
+							
+							#Ex and Ey are the 
+							#arithmetic averages
+							#of the resampled values
+							
+Ey <- oney %*% My / ny
+Delta <- Ex - Ey					
+
+							#Delta is the difference of the bootstrapped
+							#averages
+
+Delta <- sort(Delta)
+
+							#Sort the differences in increasing order
+
+n1 <- ceiling(B*(alpha/2))
+n2 <- ceiling(B*(1-alpha/2))	
+
+							#Limits of the bootstrap interval
+
+(Delta[n1] > -eps) && (Delta[n2] < eps)
+
+							#Is the interval contained in I_epsilon
+}
+}
+
+\subsection{Power}
+\subsubsection{toePower()}
+toePower <- function(n, d=0, Reps=100, eps=1, alpha=.05, B=10000, data = "normal")
+
+#n: the length of the samples
+#d: the true difference between the true means of the data
+#Reps: the number of times data of length n is generated and tested
+#eps the limit of the equivalence region
+#The desired significance level of the test
+#B: the number of bootstrap replicates carried out.
+#data: specifies the distribution of data to generate.
+#options are "normal" (default), "student's_t", and "gamma".
+
+{
+
+Result <- cbind( rep(FALSE, Reps), rep(FALSE, Reps))
+
+#The following three if clauses 
+
+if(data == "normal") {
+x <- matrix(rnorm(n * Reps), ncol = Reps, nrow = n)
+y <- matrix(rnorm(n * Reps) + d, ncol = Reps, nrow = n) 
+}
+
+
+if(data == "student's_t") {
+#Student's t data with six degrees of freedom.
+x <- matrix(rt(n,6), ncol = Reps, nrow = n)
+y <- matrix(rt(n,6) + d, ncol = Reps, nrow = n) 
+}
+
+
+if(data == "gamma") {
+#Gamma distribution with shape parameter 9 and rate parameter 2.
+x <- matrix( rgamma(n, shape = 9 , rate = 2), ncol = Reps, nrow = n)
+y <- matrix( rgamma(n, shape = 9 , rate = 2) + d, ncol = Reps, nrow = n) 
+}
+
+
+
+for(i in 1:Reps)
+ 	{
+
+		#For loops are slow in R, but this one is unavoidable based
+		#on how these functions are written.
+		#This progresses through each vector of randomly generated 
+		#values and applies both tests to it. 
+
+	Result[i,1] = toeBoot(x[,i], y[,i], eps, alpha, B)
+	Result[i,2] = toeTOST(x[,i], y[,i], eps, alpha)
+
+		#The bootstrap is in the first column, the TOST in the second.
+
+	}	
+pB <- sum(Result[,1], na.rm = TRUE)/Reps
+pT <- sum(Result[,2], na.rm = TRUE)/Reps
+
+		#The power of both tests- number of TRUE's divided 
+		#by the number of random samples of length n taken
+
+BTpower <- cbind(pB, pT) 
+
+		#Bootstrap is in the first column, the TOST in the second.
+
+BTpower
+}
+
+\end{verbatim}
+
+\section{Microarray Analysis}
+
+\subsection{TOST Test of Equivalence}
+
+\begin{verbatim}
+
+tEQ <- function(Fit, eps )
+{
+	
+#tEQ is a function of Fit and eps. Fit 
+#is the output of LMFit or EBayes, two 
+#modified LIMMA  functions, (code 
+#available in the  appendix) which 
+#first run linear  regression on 
+#Microarray data and then  carry out 
+#"empirical Bayes shrinkage  of the 
+#standard errors towards a common 
+#value" (LIMMA).
+
+#eps is the epsilon from the discussion  
+#above: the distance from zero to the  
+#endpoint of the equivalence intervals. 
+
+#eps can be specified once for every  
+#feature on the array, or once for each  
+#feature on the array. i.e. it must  
+#either be a single number or a vector  
+#with length equal to the number of  
+#features on the array.
+
+#If more than one contrast is specified  
+#for LMFit (which supports computing  
+#several different contrasts at once),  
+#this funtion will calculate  p-values  
+#for each of them.
+
+	eps <- abs(eps)
+	d <- as.matrix(Fit$coeff) 
+	
+#d holds the contrast 
+#coefficients, c^t Beta 
+
+if(is.null(Fit$s2.post))
+#Checks to see if Empirical Bayes
+#analysis was done
+	{SE <- as.matrix(Fit$sigma*Fit$stdev.unscaled)}
+else
+	{SE <- as.matrix(sqrt(Fit$s2.post)*Fit$stdev.unscaled)}
+	
+#SE holds the standard errors. If #empirical bayes analysis was done
+#uses a 'better'  
+#estimator for standard deviation  
+#than the one described  
+#in the appendix
+
+	dgf <- Fit$df.resid
+	
+#dgf is the degrees of freedom of  
+#the residuals
+
+	if( length(eps) != 1 & length(eps) != nrow(d) )
+	{
+		
+#Stops the computation if eps  
+#is not specified per-feature   
+#or universally.
+
+		stop("eps must either have length one or nrow(d)")
+	}			
+	p <- matrix(NA, nrow = nrow(d), ncol = ncol(d))
+	
+#p will hold significance levels   
+#for the TOST test of equivalence 
+
+	for ( i in 1:ncol(d) ) 
+	{
+		
+#Moving through each
+#contrast (colums of d) 
+
+		SEc <- SE[,i]
+		dc <- d[,i]
+		
+#dc and SEc are the ith column 
+#of d and SE respectively
+
+		j <-  (abs(dc) < eps) & !is.na(SEc) & (dgf != 0)
+		
+#which contrast coefficients - 
+#i.e. measurements of c^t beta 
+#hat - are inside the 
+#equivalence region, not 
+#missing due to data deletion, 
+#and with nonzero degrees of freedom
+
+		h <-  (abs(dc) >= eps)  & !is.na(SEc) & (dgf != 0)
+		
+#which contrast coefficients	
+#are outside equivalence 	
+#region, not missing due to 	
+#data deletion, and with 	
+#nonzero degrees of freedom
+		
+		####
+		
+		p[h,i] <- 1
+		
+#Contrast coefficients outside 
+#the equivalence region are 
+#not rejected. Hence the 
+#probability of a false 
+#rejection is zero, and the 
+#significance level is 1.
+
+if (length(eps)>1)
+
+#This if() else statement 
+#checks the length of eps, and 
+#then computes the distance 
+#(in standard error units) 
+#between the contrast 
+#coefficient, dc (in the i-th 
+#contrast of course), and the 
+#epsilon for that feature.
+
+			{
+			k <- ( eps[j] - abs( dc[j] )) / SEc[j]
+			} 
+else		
+			{
+			k <- ( eps - abs( dc[j] )) / SEc[j]
+
+			}
+			
+#k is the distance between the edge of 
+#the equivalence region (in the first 
+#case, the region is specified per 
+#feature, in the second, for every 
+#feature), and the contrast coefficient 
+#in units of standard error of the 
+#contrast coefficient.
+
+			p[j,i] <- pt(k, dgf[j], lower.tail = FALSE) 
+			
+#Finding  the probability that k < t, 
+#where t is student's t distributed 
+#with the appropriate number of degrees 
+#of freedom.
+
+		}
+colnames(p) <- paste(colnames(Fit$contrasts),".tEQ", sep 
+= "")
+#Names of contrasts, so we know 
+#which is which if more than 
+#one was specified.
+p
+
+#This is the significance level with 
+#which each feature is equivalent. 
+#Specify a p-value, that is a cutoff 
+#value above which we say "this feature 
+#is not significantly equivalent" and 
+#below which we say "this feature is 
+#significantly equivalent."
+}
+\end{verbatim}
+
+\subsection{Bootstrap Test of Equivalence}
+
+
+\begin{verbatim}
+
+phenoBoots <- function(LM, B, Contrasts, refpluun)
+{
+
+	#The phenoBoots function creates the empirical distribution F hat, 
+	#samples from it, re-computes the estimator c^t beta hat some 
+	#B number of times.
+	
+	#LM is the LM object produced by running LMFit without 
+	#specifying a contrasts. LMFit is a list which contains
+	#The quantities of interest produced by a standard linear regression.
+	
+	#B is the number of bootstraps	
+	
+	#Contrasts is contrast vector
+	
+	#Design is design matrix
+	
+	#refpluun is the index (in the contrasts vector) of a source in the
+	#same group as reference.
+	
+	
+	f <- dim(LM$coef)[1]
+	k <- dim(Contrasts)[2]
+
+	#f is the number of features per array k is the number of contrasts
+	
+	#The output of this function is a list of 	k matrices, each of dimension f x B
+	
+	
+	zero <- rep(0, f) 
+
+	#A vector of zeros
+
+	beta <- cbind(zero, LM$coef)
+
+	#This holds the original coefficients The column of zeros at the beginning 
+	#corresponds ot the reference source.
+	
+	re.beta <- beta
+
+	#this will hold each resampling of  the original coefficients. 
+	#The column of zeros is added so the reference source is 
+	#resampled in the bootstrap as well.
+	
+	distributions <- list(rep(0, k))
+
+	#distributions is a list which holds the empirical distributions for 
+	#each given contrast. (it is possible to give  more than one contrasts 
+	#vector at once)
+
+	for(z in 1:k) 
+	{
+		#Moving through each contrast
+
+	Contrasts0 <- c(Contrasts[refpluun,z], Contrasts)
+
+	#Normally, the reference source would be given weight
+	#zero in the contrasts vector. However, this function
+	# identifies groups by their value in the contrast vector,
+	#so here it is given the same contrast value as some other member of 
+	#its same group, so that it is counted properly, and
+	#concatenated to the beginning of the contrasts vector.
+	
+	s <- list() 
+
+	#s holds the indices of the coefficients chosen in the resampling.
+
+	u <- unique(Contrasts0)
+
+	#u picks out each of the different values of  Contrasts0 exactly once.
+
+	dist <- matrix(NA, nrow = f, ncol = B)
+
+	#dist holds the empirical distribution for this contrast. Each row is a 
+	#empirical distribution for the feature of corresponding index.
+	
+	for(i in 1:B)
+	
+	#The bootstrap itself
+	
+	{ 
+
+		for(j in 1:length(u) )
+		{ 
+		
+			#This loop picks out  groups. We resample from each group 
+			#seperately, so any between-group differences are preserved.
+			
+			who <- Contrasts0 == u[j]
+					
+			#who is in the jth group?
+					
+			s[[ j ]] <- as.vector(sample( 1:sum(who),
+			sum(who), replace = TRUE) )
+				
+			#rolling the die to pick out the indices for the jth group
+			
+			re.beta[ , who] <- as.matrix( beta[ , 
+			who])[ , s[[j]] ] 
+
+			#resamples from the coefficient vector beta, according to 
+			#which entries of beta belongs to which phenotype.
+			
+		}
+		
+	dist[,i] <- re.beta %*% as.matrix(Contrasts0)
+	
+	#The i-th bootstrap replicate for all f features.
+	
+	}	
+	
+	distributions[[z]] <- dist
+	
+	}	
+	
+	#The rows of dist correspond to features. The columns are
+	# bootstrapped contrast coefficient.
+	
+	names(distributions) <- colnames(Contrasts)
+	
+	distributions
+}	
+
+
+
+bootEQ <- function(epsilon, B, LM, Contrasts, refpluun)
+
+#The BootEQ function carries out the Bootstrapped test of equivalence, 
+#calculating a significance level for the equivalence of each feature 
+#based on the empirical bootstrap distribution. Significance level is defined 
+#as the probability of rejecting a true null hypothesis (type one error). 
+#Hence, the function returns the probability that the true 
+#value really is outside epsilon.
+
+{
+	f <- dim(LM$coef)[1]
+	k <- dim(Contrasts)[2]
+
+	#f is the number of features per array and k is the number of contrasts
+	
+	pboots <- phenoBoots(LM, B, Contrasts, refpluun)
+	
+		#The resampling step.
+	
+	ctbeta <- LM$coef %*% Contrasts
+		
+		#ctbeta  are the contrast coefficients. 
+		
+		#ctbeta is a m x k matrix, where m is the number  of sources 
+		#and k is the number of contrasts
+		
+	p <- rep(NA, f)
+	
+		# p will hold to p-values
+	
+	sig <- matrix(NA, f, k )
+		
+		#sig will hold a p-value for each
+		#feature and each contrasts
+
+	for(z in 1:k)
+	{	
+		boots <- pboots[[z]]
+		cbeta <- as.matrix(ctbeta[,z])
+		
+		#boots and cbeta correspond to the z-th contrast
+		
+		Each.pos <- matrix( boots > epsilon, nrow = f, ncol = B )
+		Each.neg <- matrix( -boots < -epsilon, nrow = f, ncol = B )
+			
+			#Each has the same dimension as boots. This returns TRUE if a 
+			#point of the empirical distribution is greater than
+			#epsilon, FALSE if it is less than epsilon, and NA if there 
+			#was an NA in that feature for cbeta.
+			
+		b.pos <- apply(Each.pos, 1, sum, na.rm = TRUE)
+		b.neg <- apply(Each.neg, 1, sum, na.rm = TRUE)
+
+			#These two values specify many points 
+			#in the empirical distribution are outside plus or minus epsilon.
+			
+		p <- (b.neg + b.pos) / B
+		
+			#What fraction is this of total?
+			
+		rej <- as.vector( (abs(cbeta) >= 
+			epsilon) & !is.na(cbeta) )
+			
+			#The rej are the contrast coefficients outside (-epsilon, epsilon)
+			#and which are not NA
+			
+		p[rej] <- 1
+		
+			#If the contrast coefficient is not inside the interval, it is not equivalent
+			
+		p[is.na(cbeta)] <- NA	
+				
+		sig[,z] <- p
+			
+		}
+	colnames(sig) <- paste(colnames(Contrasts),
+					".tEQ", sep = "")
+	#Making sure the names are consisitent					
+	sig
+}		
+
+\end{verbatim}

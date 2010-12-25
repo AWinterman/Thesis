@@ -1,0 +1,191 @@
+\chapter{Application to the Analysis of Microarray Data}
+
+\label{Analysis of Microarray Data}
+
+The workhorse of microarray data analysis is the linear model. However, microarrays have a few nonstandard features which complicate the analysis.
+
+ 
+ In the microarray context, our hypothesis is about a statistic, $\Delta$, which measures the log ratio of gene expression between two groups of sources. If there is no difference, $\Delta$ = 0. Let $D$ be an estimator for $\Delta$. In the microarray context, the test of equivalence holds:
+ \begin{eqnarray} 
+ H_0: &  \Delta  \notin & (-\epsilon, \epsilon)   \nonumber \\
+ & \mbox{versus}& \label{ToEQ}\\
+ H_1: &  \Delta  \in &  (-\epsilon, \epsilon) \nonumber
+ \end{eqnarray}
+Here $\epsilon$ is some small number chosen by the scientist for substantive, scientific reasons. For instance, it is theorized that there are some genes necessary to the normal functioning of cells - called housekeeping genes because the functions for which they are responsible are so rudimentary - which should be expressed uniformly across phenotypes within species. For the purpose of detecting housekeeping genes, one might choose a relatively small epsilon. If we are looking for genes equivalently expressed across species, we might want a larger $\epsilon$ to allow for inter-species differences which might adjust gene expression levels \cite{QiuandCui}.
+
+Microarray analysis often involves (as in \cite{adjaye}, \cite{Renn} and \cite{rodriguez}) fitting a linear model to produce estimates of relative gene expression level. As such,  appendix \ref{Linear Regression} covers a common method, least squared error linear regression, along with the construction of Student's $t$ statistic employed in the two one sided $t$-test. 
+
+The first thing of note when analyzing microarray data is the sheer number of data sets. Renn et al [2008] employed forty microarrays, each of which had $6,400$ features. Hence in its analysis, one must run linear regressions on $6,400$ data sets of forty data points to test each of $6,400$ hypothesis. These numbers require significant amount of computational resources.
+
+ As described in Appendix \ref{Linear Regression}, a linear model describes the relationship between response variables and a set of explanatory variables. The response variables in the microarray context are measurements of ratios of intensity between two dyes for a given feature on a given array. For ease of comparison, analysts typically employ the log ratio of intensity levels. 
+ 
+ In microarray analysis, the explanatory variables are discrete, specifying simply the presence or absence of a source\footnote{Tissues compared on microarrays are referred to as sources, in general.} on a given array. The explanatory variables are written down in  the design matrix. In this context, each row of the design matrix corresponds to an array, while each column corresponds to a source. If a source, say the k$^{th}$ one, is dyed with Cyanine 3 and hybridized on the i$^{th}$ array, a ``1" is written down in the ($i,k)$$^{th}$ position. If the same individual is dyed with Cyanine 5 instead, a ``-1" would be recorded in the $(i,k)$$^{th}$ position. Otherwise, a zero is written down. For example these are two plausible rows of a design matrix.
+ 
+ \begin{eqnarray}\begin{array}{ r | r r r r r r r} 
+ 	\label{fig: RowsDesign}
+ 
+    &  \dots & k -1 &k &k+1 & k+2 & k+3 & \dots \\ \hline		
+i  &\dots & 0 & 1 & 0 & -1 & 0 &\dots\\
+i+1 & \dots &  0 & -1 & 1 & 0 & 0 &\dots \\
+
+\end{array}
+\end{eqnarray}
+ 
+ From \ref{fig: RowsDesign} we can read that on the $i^{th}$ array, the $k^{th}$ individual (in Cyanine 3) was compared to the $(k+2) ^{th}$ individual (in Cyanine 5). 
+ 
+ Given the the design matrix, $X$, and the response variables, a vector $Y$, a linear model is fitted, producing estimated expression coefficients\footnote{Each feature has an associated vector of estimated coefficients, fitted values, and residuals. Each of these vectors has one entry for each source.} $\hat{\beta}$, fitted values $\hat{Y}$ and residuals $\mathbf{r}$. In least squared error regression, we assume the random error of each measurement is independent from all other measurements, and that this random error has constant variance and mean zero.  Until this point - that is up until section \ref{Distributional Results} of Appendix \ref{Linear Regression} - the least squared error linear regression relies on no distribution specific assumptions. At this point, one can choose to assume normal error and apply the TOST test of equivalence, or instead make the much looser assumption that the difference statistic is asymptotically normal\footnote{A statistic is asymptotically normal if and only if, as the sample size grows arbitrarily large, the statistic's distribution becomes arbitrarily close to the normal distribution. See Chapter 7.2 of \cite{Intro} for more information. The most common example of an asymptotically normal distribution is the sample mean (by the Central Limit Theorem).}, and apply the Bootstrap.
+
+
+\section{ Contrasts }
+
+Once the the linear model has been fitted, we are left with $\hat{\beta}$, the vector of relative log gene expression level sources and some baseline reference source. We want to compute the difference in mean expression levels between two different phenotypes - subgroups of our sample grouped by distinctive physical or behavioral characteristics. To this end, one introduces a contrast vector: 
+\begin{eqnarray} c = \left(\begin{array}{c} 
+ c_1 \\ c_2 \\ \vdots \\ c_n
+ \end{array}\right)  
+ \end{eqnarray}
+such that  $\sum_{i=1}^n c_i = 0$. Each entry of $c$ corresponds to a source in the experiment.  In microarray analysis, $c$ is chosen in such a way so that $ c^t \beta = \sum_{i=1}^n c_i \beta_i$ is the difference of average log gene expression levels between two phenotypes; i.e. $c^t \beta = \mu_1 - \mu_2$, where $\mu_1$ and $\mu_2$ are mean relative expression levels in groups 1 and 2,  as compared to reference. For example, suppose we have four sources, divided up into two phenotypes. Suppose sources one and two are in one group and sources three and four are in the other. Let $\hat{\beta}_1, \hat{\beta_2}, \hat{\beta_3}$ and $\hat{\beta_4}$ be the corresponding estimated expression levels. Then an appropriate choice of contrast vector would be $c = (0.5, 0.5, -0.5, -0.5)$. When we take the inner product,
+ \[ 
+ c^t \hat{\beta} = \frac{\hat{\beta}_1 + \hat{\beta_2}}{2} - \frac{\hat{\beta_3} +\hat{\beta_4} }{2},
+  \]
+we find that $c^t \hat{\beta}$ is the difference in  estimated mean expression levels between the two groups. 
+
+
+
+\section{A Very Simple Example}
+
+To make this discussion more concrete, suppose, once again, we are comparing Lemurs from phenotype A to Lemurs from species B. Imagine we have two sources from each species, Lemurs $A_1$ and $A_2$ and $B_1$ and $B_2$, and only two features on each array. say Gene $e$ and Gene $d$.
+
+First we design an experiment. 
+\begin{figure}[h!]
+\begin{eqnarray*}
+\xymatrix{  
+A_1 \ar[r]^1 & A_2  \ar[d]^2 \\
+B_1  \ar[u]^4  & B_2 \ar[l]_3
+}
+\end{eqnarray*}
+\caption{This figure represents the experimental design. Arrows represent arrays and alpha-numerals represent sources.  Connecting two alpha-numerals with an arrow indicates the corresponding sources were compared on the array whose index is shown adjacent to the arrow. A source positioned at the head of an arrow indicates it was dyed, on the corresponding array, with Cyanine 3, and at the tail with Cyanine 5.}
+\label{SimpleExample}
+\end{figure}
+
+ 
+We can read the design matrix directly from figure \ref{SimpleExample}. One might think the design matrix would be:
+
+\begin{eqnarray*}
+  \left( \begin{array}{r r r r} 
+  -1 & 1 & 0 & 0 \\
+ 0  & -1 & 1 & 0 \\
+ 0 & 0 &  -1 & 1 \\
+ 1 & 0 & 0 & -1 \\ 
+\end{array} \right)
+\end{eqnarray*}
+
+This would be correct, except microarrays always compare two different sources. That is they do not measure absolute gene expression levels, but rather gene expression levels relative to some source set as reference. The estimated expression coefficients represent lof ``fold change"-- e.g. this gene is expressed three times as much in source $A_2$ as in the reference source, whichever that may be. Encoding the design matrix as above would imply that we could obtain absolute measurements for every gene expression level. Not only is this design experimentally impossible, but it also leads to a singular design matrix -- a big problem for linear regression. 
+	To avoid these problems, we set one lemur as reference, say lemur $A_1$, whose relative gene expression level is set to zero. Rather than keep track of him throughout the experiment, we simply delete the column corresponding to lemur $A_1$ from the design matrix, yielding:
+
+\begin{eqnarray}
+X =  \left( \begin{array}{ r r  r} 
+   1 & 0 & 0 \\
+  -1 & 1 & 0 \\
+  0 &  -1 & 1 \\
+ 0 & 0 & -1 \\ 
+\end{array} \right)
+\end{eqnarray}
+
+The design is important. A faulty design will deny the analyst the ability to compare expression ratios between all the sources in the experiment. Every source should appear on at least two arrays, once in Cyanine 3 and once in Cyanine 5, to avoid dye bias, and each source should appear in such a way so that the gene expression of every source can be compared to all other sources. 
+
+Suppose we measured the following fluorescence ratios for two genes on the arrays\footnote{In most papers these would be on a log$_2$ scale, but for now, these have been presented in the original scale}:
+
+\begin{eqnarray}
+\label{table: fakemicroarray}
+\begin{tabular}{c | c c c c}
+             & Array 1 & Array 2 & Array 3 & Array 4 \\ \hline
+Feature d  & 1.78 & 5.46 & 1.83 & 2.20\\
+Feature e  & 0.92 & 0.95 & 0.85 & 0.42   \\
+\end{tabular}
+\end{eqnarray}
+
+In this design, we can compare any individual's fluorescence levels to any other's. One can deduce this from figure \ref{SimpleExample}. On the graph, there is a path| i.e. a chain of comparisons from any source to any other. Hence because comparisons of gene expression levels are transitive, we can compare any source to any other.
+
+The rows of the table \ref{table: fakemicroarray} make up the response variables $Y$ in two separate experiments. They share a design matrix, because the experimental design remains unchanged as the feature under consideration varies.
+
+Let us compute log$_2$ relative gene expression levels using the values from \ref{table: fakemicroarray}, as described in detail above.  
+
+First, on conversion to base 2 logarithms, \ref{table: fakemicroarray} becomes:
+
+\begin{eqnarray}
+\label{table: logfakemicroarray}
+\begin{tabular}{c | c c c c}
+             & Array 1 & Array 2 & Array 3 & Array 4 \\ \hline
+Feature d  & 0.83 & 2.44 & 0.87 & 1.13  \\
+Feature e  & -0.11 & -0.07 & -0.23 & -1.24   \\
+\end{tabular}
+\end{eqnarray}
+
+The estimated expression of Gene $d$ and Gene $e$  as compared to the reference in the three, non-reference lemurs in the experiment is given by an application of \ref{CoeffEst}:
+
+\[ \hat{\beta}_d = (X^t X)^{-1} X^t Y_d =  \left( -0.49\, ,\,0.63\, , \, 0.19  \right) \]
+\[ \hat{\beta}_e = (X^t X)^{-1} X^t Y_e = \left(0.30 \, ,\, 0.64 \, , \,  0.827 \right) \]
+
+ 
+A natural contrast vector for this experiment is $c = (1/2,\, -1/2,\, -1/2)$, which would specify that $A_2$ is in one group of two with the reference source, $A_1$, and that $B_1$ and $B_2$ are in the other of two. There is only one positive entry because the source corresponding to the other positive entry is the reference, and would be multiplied by zero anyway. 
+
+With this contrast vector, we have:
+\[ c^t\hat{\beta}_d  =  -0.6554229\]
+and
+\[ c^t\hat{\beta}_e  =  -0.5837189\]
+
+This sample size is so small that running the tests of equivalence on them is not really worthwhile. Both the TOST and Bootstrap test of equivalence are described in application to microarray data in what follows.
+
+\section{The t-Test and Bootstrap for Microarray Data}
+
+Both the t-test and the bootstrap tests of equivalence can be formulated in terms of contrasts. In both tests, the estimator for $\Delta = c^t \beta$ is $D = c^t \hat{\beta}$, where $c$ is a contrast vector, $\beta$ is a vector of true gene expression levels, and $\hat{\beta}$ is it's estimate.  The hypothesis test is unchanged:
+ 
+ \begin{eqnarray} 
+ H_0: &  \Delta  \notin & (-\epsilon, \epsilon)   \nonumber \\
+ & \mbox{versus}& \label{ToEQ}\\
+ H_1: &  \Delta  \in &  (-\epsilon, \epsilon) \nonumber
+ \end{eqnarray}
+ 
+ If $|D| \geq \epsilon$, neither test can reject the null. Otherwise, the procedures described in the following subsections are carried out.
+ 
+ \subsection{t Test of Equivalence for Microarrays}
+
+The TOST test for microarray data relies on the distributional results from \ref{Distributional Results} Specifically:
+
+\begin{eqnarray}
+ \label{eqn: hatbeta}
+ \hat{\beta} \thicksim N(\beta, \,\sigma^2 (X^tX)^{-1}).
+  \end{eqnarray}
+
+From \ref{eqn: hatbeta}, we can deduce, by brief application of \ref{Cov} and  \ref{Mean},  the distribution of  $c^t \hat{\beta}$,
+\begin{eqnarray}
+\label{c^t beta}
+c^t\hat{\beta} \thicksim N( c^t \beta, \,\sigma^2 c^t (X^tX)^{-1}c).
+\end{eqnarray}
+Hence we can construct for $c^t \hat{\beta}$ a $t$-statistic, which we can use in a $t$-test:
+\begin{eqnarray}
+t = \frac{c^t  \hat{\beta} - c^t  \beta }{ s \sqrt{ c^t (X^tX)^{-1}c} },
+\end{eqnarray}
+where $s$ is the residual standard error. $t$ has the Student's $t$ distribution with degrees of freedom equal to $df$, the difference in the number of explanatory and response variables. 
+
+
+
+Recall that the TOST rejects the null hypothesis at level $\alpha$ when the p-value $ \mathbb{P}(\mathfrak{t} \geq K) < \alpha$, where $\mathfrak{t}$ is Student's $t$ distributed with the $df$ degrees if freedom, and $K $ is given by 
+\begin{eqnarray}
+ K = \frac {\epsilon - |D| }{\mbox{SE}(D) }.
+ \end{eqnarray} 
+ Equivalently, the test rejects $H_0$ if
+ \[
+|D| + t^{1-\alpha}_{df} \cdot SE(D) < \epsilon
+\]
+In the microarray context, $\mbox{SE}(D)$ is given by $s \sqrt{ c^t (X^tX)^{-1}c} $, and $D = c^t \hat{\beta}$. Hence, we reject the null hypothesis of non-equivalence with level $\alpha$ when 
+\[p =   \mathbb{P}( \mathfrak{t} \geq K) < \alpha,\]
+where $K$ is given by:
+\[ K = \frac {\epsilon - |c^t \hat{\beta}| }{ s \sqrt{ c^t (X^tX)^{-1}c}  }, \]
+and $\mathfrak{t}$ is Student's $t$ distributed with $df$ degrees of freedom.
+
+
+\subsection{The Bootstrap for Microarray Data}
+ 
+In the microarray context, the set of data to be bootstrapped - $\mathbb{M}$ - is the set of estimated gene expression levels (in log scale) for a given feature, including the estimated gene expression of the reference animal, a zero. Explicitly, $$ \mathbb{M} = \left(0, \hat{\beta}_1, \hat{\beta}_2, \dots, \hat{\beta}_n \right)$$ If $D \in  (-\epsilon, \epsilon)$, then we employ the bootstrap.  We divide $\mathbb{M}$ into groups as indicated by the contrast vector, and then resample from each group of entries seperately. In this way, we construct the bootstrap distribution: $$\Theta = \left( c^t \hat{\beta}^1, \dots, c^t  \hat{\beta}^B \right),$$ where each $c^t \hat{\beta}^i$ is formed by sampling from $\mathbb{M}$, as described in section \ref{Bootstrap}. We sort $\Theta$ into ascending order\footnote{The notation $x^{(i)}$ in this context represents the $i$-th ordered element of all the $x$'s}: $$\Theta^\circ = \left(c^t \hat{\beta}^{(1)}, \dots, c^t \hat{\beta}^{(B)}\right).$$ Given $\Theta^\circ$ and a given significance level $\alpha$, we compute $n_{1} = \lceil \alpha \cdot B \rceil$ and $n_2 = \lceil (1 - \alpha) \cdot B \rceil$ and compare the interval $I_B = ( c^t\hat{\beta}^{(n_1)},  c^t\hat{\beta}^{(n_2)})$ to  $I_\epsilon = (-\epsilon,\  \epsilon)$. If $I_B \subset I_\epsilon$, we reject the null hypothesis at level $\alpha$.
+ 

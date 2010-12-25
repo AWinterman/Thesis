@@ -1,0 +1,743 @@
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009) (format=pdflatex 2009.11.7)  15 DEC 2010 12:18
+entering extended mode
+ \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**TestofEquivalence.tex
+(./TestofEquivalence.tex
+LaTeX2e <2009/09/24>
+Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
+yphenation, german-x-2009-06-19, ngerman-x-2009-06-19, ancientgreek, ibycus, ar
+abic, basque, bulgarian, catalan, pinyin, coptic, croatian, czech, danish, dutc
+h, esperanto, estonian, farsi, finnish, french, galician, german, ngerman, mono
+greek, greek, hungarian, icelandic, indonesian, interlingua, irish, italian, ku
+rmanji, latin, latvian, lithuanian, mongolian, mongolian2a, bokmal, nynorsk, po
+lish, portuguese, romanian, russian, sanskrit, serbian, slovak, slovenian, span
+ish, swedish, turkish, ukenglish, ukrainian, uppersorbian, welsh, loaded.
+(./reedthesis.cls
+Document Class: reedthesis 2004/01/27 The Reed College Thesis Class
+(/usr/local/texlive/2009/texmf-dist/tex/latex/base/book.cls
+Document Class: book 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/local/texlive/2009/texmf-dist/tex/latex/base/bk12.clo
+File: bk12.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@chapter=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/usr/local/texlive/2009/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
+\fancy@headwidth=\skip43
+\f@ncyO@elh=\skip44
+\f@ncyO@erh=\skip45
+\f@ncyO@olh=\skip46
+\f@ncyO@orh=\skip47
+\f@ncyO@elf=\skip48
+\f@ncyO@erf=\skip49
+\f@ncyO@olf=\skip50
+\f@ncyO@orf=\skip51
+))
+(/usr/local/texlive/2009/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2009/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+(/usr/local/texlive/2009/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2009/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/usr/local/texlive/2009/texmf-dist/tex/latex/latexconfig/graphics.cfg
+File: graphics.cfg 2009/08/28 v1.8 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: pdftex.def on input line 91.
+
+(/usr/local/texlive/2009/texmf-dist/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2009/08/25 v0.04m Graphics/color for pdfTeX
+\Gread@gobject=\count88
+))
+\Gin@req@height=\dimen103
+\Gin@req@width=\dimen104
+)
+(/usr/local/texlive/2009/texmf-dist/tex/latex/base/latexsym.sty
+Package: latexsym 1998/08/17 v2.2e Standard LaTeX package (lasy symbols)
+\symlasy=\mathgroup4
+LaTeX Font Info:    Overwriting symbol font `lasy' in version `bold'
+(Font)                  U/lasy/m/n --> U/lasy/b/n on input line 47.
+)
+(/usr/local/texlive/2009/texmf-dist/tex/generic/xypic/xy.sty
+(/usr/local/texlive/2009/texmf-dist/tex/generic/xypic/xy.tex Bootstrap'ing:
+catcodes, docmode,
+(/usr/local/texlive/2009/texmf-dist/tex/generic/xypic/xyrecat.tex)
+(/usr/local/texlive/2009/texmf-dist/tex/generic/xypic/xyidioms.tex)
+
+ Xy-pic version 3.7 <1999/02/16>
+ Copyright (c) 1991-1998 by Kristoffer H. Rose <krisrose@ens-lyon.fr>
+ Xy-pic is free software: see the User's Guide for details.
+
+Loading kernel: messages; fonts; allocations: state,
+\X@c=\dimen105
+\Y@c=\dimen106
+\U@c=\dimen107
+\D@c=\dimen108
+\L@c=\dimen109
+\R@c=\dimen110
+\Edge@c=\toks15
+\X@p=\dimen111
+\Y@p=\dimen112
+\U@p=\dimen113
+\D@p=\dimen114
+\L@p=\dimen115
+\R@p=\dimen116
+\Edge@p=\toks16
+\X@origin=\dimen117
+\Y@origin=\dimen118
+\X@xbase=\dimen119
+\Y@xbase=\dimen120
+\X@ybase=\dimen121
+\Y@ybase=\dimen122
+\X@min=\dimen123
+\Y@min=\dimen124
+\X@max=\dimen125
+\Y@max=\dimen126
+\lastobjectbox@=\box26
+\zerodotbox@=\box27
+\almostz@=\dimen127
+ direction,
+\d@X=\dimen128
+\d@Y=\dimen129
+\K@=\count89
+\KK@=\count90
+\Direction=\count91
+\K@dXdY=\dimen130
+\K@dYdX=\dimen131
+\xyread@=\read1
+\xywrite@=\write3
+\csp@=\count92
+\quotPTK@=\dimen132
+
+utility macros; pictures: \xy, positions,
+\swaptoks@@=\toks17
+\connectobjectbox@@=\box28
+ objects,
+\styletoks@=\toks18
+ decorations;
+kernel objects: directionals, circles, text; options; algorithms: directions,
+edges, connections;  Xy-pic loaded)
+Package: xy 1999/02/16 Xy-pic version 3.7
+
+(/usr/local/texlive/2009/texmf-dist/tex/generic/xypic/xyall.tex
+ Xy-pic option: All features v.3.3
+(/usr/local/texlive/2009/texmf-dist/tex/generic/xypic/xycurve.tex
+ Xy-pic option: Curve and Spline extension v.3.7 curve,
+\crv@cnt@=\count93
+\crvpts@=\toks19
+\splinebox@=\box29
+\splineval@=\dimen133
+\splinedepth@=\dimen134
+\splinetol@=\dimen135
+\splinelength@=\dimen136
+ circles,
+\L@=\dimen137
+ loaded)
+(/usr/local/texlive/2009/texmf-dist/tex/generic/xypic/xyframe.tex
+ Xy-pic option: Frame and Bracket extension v.3.7 loaded)
+(/usr/local/texlive/2009/texmf-dist/tex/generic/xypic/xycmtip.tex
+ Xy-pic option: Computer Modern tip extension v.3.3
+(/usr/local/texlive/2009/texmf-dist/tex/generic/xypic/xytips.tex
+ Xy-pic option: More Tips extension v.3.3 loaded) loaded)
+(/usr/local/texlive/2009/texmf-dist/tex/generic/xypic/xyline.tex
+ Xy-pic option: Line styles extension v.3.6
+\xylinethick@=\dimen138
+ loaded)
+(/usr/local/texlive/2009/texmf-dist/tex/generic/xypic/xyrotate.tex
+ Xy-pic option: Rotate and Scale extension v.3.3 loaded)
+(/usr/local/texlive/2009/texmf-dist/tex/generic/xypic/xycolor.tex
+ Xy-pic option: Colour extension v.3.3 loaded)
+(/usr/local/texlive/2009/texmf-dist/tex/generic/xypic/xymatrix.tex
+ Xy-pic option: Matrix feature v.3.4
+\Row=\count94
+\Col=\count95
+\queue@=\toks20
+\queue@@=\toks21
+\qcount@=\count96
+\qcount@@=\count97
+\matrixsize@=\count98
+ loaded)
+(/usr/local/texlive/2009/texmf-dist/tex/generic/xypic/xyarrow.tex
+ Xy-pic option: Arrow and Path feature v.3.5 path, \ar, loaded)
+(/usr/local/texlive/2009/texmf-dist/tex/generic/xypic/xygraph.tex
+ Xy-pic option: Graph feature v.3.7 loaded) loaded))
+(/usr/local/texlive/2009/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2009/06/22 v3.00
+
+(/usr/local/texlive/2009/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2009/06/22 v3.00 Basic AMSFonts support
+\@emptytoks=\toks22
+\symAMSa=\mathgroup5
+\symAMSb=\mathgroup6
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 96.
+))
+(/usr/local/texlive/2009/texmf-dist/tex/latex/amscls/amsthm.sty
+Package: amsthm 2004/08/06 v2.20
+\thm@style=\toks23
+\thm@bodyfont=\toks24
+\thm@headfont=\toks25
+\thm@notefont=\toks26
+\thm@headpunct=\toks27
+\thm@preskip=\skip52
+\thm@postskip=\skip53
+\thm@headsep=\skip54
+\dth@everypar=\toks28
+)
+(/usr/local/texlive/2009/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2000/07/18 v2.13 AMS math features
+\@mathmargin=\skip55
+
+For additional information on amsmath, use the `?' option.
+(/usr/local/texlive/2009/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01
+
+(/usr/local/texlive/2009/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0
+\@emptytoks=\toks29
+\ex@=\dimen139
+))
+(/usr/local/texlive/2009/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d
+\pmbraise@=\dimen140
+)
+(/usr/local/texlive/2009/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 1999/12/14 v2.01 operator names
+)
+\inf@bad=\count99
+LaTeX Info: Redefining \frac on input line 211.
+\uproot@=\count100
+\leftroot@=\count101
+LaTeX Info: Redefining \overline on input line 307.
+\classnum@=\count102
+\DOTSCASE@=\count103
+LaTeX Info: Redefining \ldots on input line 379.
+LaTeX Info: Redefining \dots on input line 382.
+LaTeX Info: Redefining \cdots on input line 467.
+\Mathstrutbox@=\box30
+\strutbox@=\box31
+\big@size=\dimen141
+LaTeX Font Info:    Redeclaring font encoding OML on input line 567.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 568.
+\macc@depth=\count104
+\c@MaxMatrixCols=\count105
+\dotsspace@=\muskip10
+\c@parentequation=\count106
+\dspbrk@lvl=\count107
+\tag@help=\toks30
+\row@=\count108
+\column@=\count109
+\maxfields@=\count110
+\andhelp@=\toks31
+\eqnshift@=\dimen142
+\alignsep@=\dimen143
+\tagshift@=\dimen144
+\tagwidth@=\dimen145
+\totwidth@=\dimen146
+\lineht@=\dimen147
+\@envbody=\toks32
+\multlinegap=\skip56
+\multlinetaggap=\skip57
+\mathdisplay@stack=\toks33
+LaTeX Info: Redefining \[ on input line 2666.
+LaTeX Info: Redefining \] on input line 2667.
+)
+(/usr/local/texlive/2009/texmf-dist/tex/latex/tools/longtable.sty
+Package: longtable 2004/02/01 v4.11 Multi-page Table package (DPC)
+\LTleft=\skip58
+\LTright=\skip59
+\LTpre=\skip60
+\LTpost=\skip61
+\LTchunksize=\count111
+\LTcapwidth=\dimen148
+\LT@head=\box32
+\LT@firsthead=\box33
+\LT@foot=\box34
+\LT@lastfoot=\box35
+\LT@cols=\count112
+\LT@rows=\count113
+\c@LT@tables=\count114
+\c@LT@chunks=\count115
+\LT@p@ftn=\toks34
+)
+(/usr/local/texlive/2009/texmf-dist/tex/latex/booktabs/booktabs.sty
+Package: booktabs 2005/04/14 v1.61803 publication quality tables
+\heavyrulewidth=\dimen149
+\lightrulewidth=\dimen150
+\cmidrulewidth=\dimen151
+\belowrulesep=\dimen152
+\belowbottomsep=\dimen153
+\aboverulesep=\dimen154
+\abovetopsep=\dimen155
+\cmidrulesep=\dimen156
+\cmidrulekern=\dimen157
+\defaultaddspace=\dimen158
+\@cmidla=\count116
+\@cmidlb=\count117
+\@aboverulesep=\dimen159
+\@belowrulesep=\dimen160
+\@thisruleclass=\count118
+\@lastruleclass=\count119
+\@thisrulewidth=\dimen161
+)
+(/usr/local/texlive/2009/texmf-dist/tex/latex/setspace/setspace.sty
+Package: setspace 2000/12/01 6.7 Contributed and Supported LaTeX2e package
+
+Package: `setspace' 6.7 <2000/12/01>
+) (/usr/local/texlive/2009/texmf-dist/tex/latex/ltxmisc/url.sty
+\Urlmuskip=\muskip11
+Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
+)
+(/usr/local/texlive/2009/texmf-dist/tex/latex/natbib/natbib.sty
+Package: natbib 2009/07/16 8.31 (PWD, AO)
+\bibhang=\skip62
+\bibsep=\skip63
+LaTeX Info: Redefining \cite on input line 694.
+\c@NAT@ctr=\count120
+)
+(/usr/local/texlive/2009/texmf-dist/tex/latex/marginnote/marginnote.sty
+Package: marginnote 2009/05/06 v1.1d non floating margin notes for LaTeX
+\c@mn@abspage=\count121
+)
+(/usr/local/texlive/2009/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count122
+\lst@gtempboxa=\box36
+\lst@token=\toks35
+\lst@length=\count123
+\lst@currlwidth=\dimen162
+\lst@column=\count124
+\lst@pos=\count125
+\lst@lostspace=\dimen163
+\lst@width=\dimen164
+\lst@newlines=\count126
+\lst@lineno=\count127
+\lst@maxwidth=\dimen165
+
+(/usr/local/texlive/2009/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
+\c@lstnumber=\count128
+\lst@skipnumbers=\count129
+\lst@framebox=\box37
+)
+(/usr/local/texlive/2009/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2007/02/22 1.4 listings configuration
+))
+Package: listings 2007/02/22 1.4 (Carsten Heinz)
+
+(/usr/local/texlive/2009/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2009/10/09 v3.1k Customizing captions (AR)
+
+(/usr/local/texlive/2009/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2009/10/09 v3.1k caption3 kernel (AR)
+\captionmargin=\dimen166
+\captionmargin@=\dimen167
+\captionwidth=\dimen168
+\caption@indent=\dimen169
+\caption@parindent=\dimen170
+\caption@hangindent=\dimen171
+)
+\c@ContinuedFloat=\count130
+Package caption Info: listings package is loaded.
+Package caption Info: longtable package is loaded.
+
+(/usr/local/texlive/2009/texmf-dist/tex/latex/caption/ltcaption.sty
+Package: ltcaption 2008/03/28 v1.2 longtable captions (AR)
+))
+(./TestofEquivalence.aux (./Introduction.aux) (./Methods.aux)
+(./Application.aux
+
+LaTeX Warning: Label `ToEQ' multiply defined.
+
+) (./Analysis.aux) (./Conclusion.aux) (./Regression.aux) (./Code.aux))
+\openout1 = `TestofEquivalence.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+
+(/usr/local/texlive/2009/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count131
+\scratchdimen=\dimen172
+\scratchbox=\box38
+\nofMPsegments=\count132
+\nofMParguments=\count133
+\everyMPshowfont=\toks36
+\MPscratchCnt=\count134
+\MPscratchDim=\dimen173
+\MPnumerator=\count135
+\everyMPtoPDFconversion=\toks37
+)
+Package marginnote Info: \pdfoutput not 0 and \pdflastxpos available.
+(marginnote)             Extended position detection mode activated.
+\c@lstlisting=\count136
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 33.
+ (/usr/local/texlive/2009/texmf-dist/tex/latex/base/ulasy.fd
+File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
+)
+LaTeX Font Info:    Try loading font information for U+msa on input line 33.
+
+(/usr/local/texlive/2009/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2009/06/22 v3.00 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 33.
+
+(/usr/local/texlive/2009/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2009/06/22 v3.00 AMS symbols B
+) [1
+Non-PDF special ignored!
+Non-PDF special ignored!
+
+
+{/usr/local/texlive/2009/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2
+
+] [3] [4
+
+] [1
+
+
+] [2
+
+] (./TestofEquivalence.toc)
+\tf@toc=\write4
+\openout4 = `TestofEquivalence.toc'.
+
+ [3] [4
+
+] [5]
+[6
+
+]
+\openout2 = `Introduction.aux'.
+
+ (./Introduction.tex
+Chapter 1.
+Missing character: There is no Õ in font cmr12!
+[1
+
+
+]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[2]
+Missing character: There is no ß in font cmr12!
+ [3]) [4]
+\openout2 = `Methods.aux'.
+
+ (./Methods.tex
+Chapter 2.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [5
+
+
+
+]
+[6] <DiagramNormal.pdf, id=71, 505.89pt x 505.89pt>
+File: DiagramNormal.pdf Graphic file (type pdf)
+ <use DiagramNormal.pdf>
+Overfull \hbox (72.26875pt too wide) in paragraph at lines 31--32
+ [] 
+ []
+
+
+LaTeX Warning: Float too large for page by 1.8588pt on input line 35.
+
+LaTeX Font Info:    Try loading font information for U+euf on input line 46.
+(/usr/local/texlive/2009/texmf-dist/tex/latex/amsfonts/ueuf.fd
+File: ueuf.fd 2009/06/22 v3.00 Euler Fraktur
+) [7] [8 <./DiagramNormal.pdf>] [9]) [10]
+\openout2 = `Application.aux'.
+
+ (./Application.tex
+Chapter 3.
+[11
+
+
+
+]
+Underfull \vbox (badness 3049) has occurred while \output is active []
+
+ [12]
+<xymatrix 2x2 182> [13] [14] [15] [16]) [17]
+\openout2 = `Analysis.aux'.
+
+ (./Analysis.tex [18
+
+
+
+]
+Chapter 4.
+[19] <NormalPowerEpsilon.pdf, id=125, 505.89pt x 505.89pt>
+File: NormalPowerEpsilon.pdf Graphic file (type pdf)
+
+<use NormalPowerEpsilon.pdf>
+Overfull \hbox (72.26875pt too wide) in paragraph at lines 27--28
+[][] 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [20 <./NormalPowerEpsilon.pdf>]
+<Student'sTPowerEpsilon.pdf, id=136, 505.89pt x 505.89pt>
+File: Student'sTPowerEpsilon.pdf Graphic file (type pdf)
+
+<use Student'sTPowerEpsilon.pdf>
+Overfull \hbox (72.26875pt too wide) in paragraph at lines 36--37
+[][] 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [21 <./Student'sTPowerEpsilon.pdf>]) [22]
+\openout2 = `Conclusion.aux'.
+
+ (./Conclusion.tex
+Chapter 5.
+) [23
+
+
+
+]
+\openout2 = `Regression.aux'.
+
+ (./Regression.tex [24
+
+
+
+]
+Appendix A.
+[25] [26] [27]
+Overfull \hbox (17.19762pt too wide) in paragraph at lines 65--66
+[]\OT1/cmr/m/n/12 The resid-u-als, $\OT1/cmr/bx/n/12 r$ \OT1/cmr/m/n/12 are ob-
+tained by pass-ing $\OML/cmm/m/it/12 Y$ \OT1/cmr/m/n/12 through the op-er-a-tor
+: $(\U/msb/m/n/12 I \OMS/cmsy/m/n/12 ^^@ \OML/cmm/m/it/12 X\OT1/cmr/m/n/12 (\OM
+L/cmm/m/it/12 X[]X\OT1/cmr/m/n/12 )[]\OML/cmm/m/it/12 X[]\OT1/cmr/m/n/12 ) =
+ []
+
+[28]
+Underfull \hbox (badness 10000) in paragraph at lines 100--102
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 108--112
+
+ []
+
+[29]
+Underfull \hbox (badness 10000) in paragraph at lines 113--116
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 118--123
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 130--132
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 130--132
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 137--140
+
+ []
+
+[30]) [31]
+\openout2 = `Code.aux'.
+
+ (./Code.tex [32
+
+
+
+]
+Appendix B.
+[33] [34]
+Overfull \hbox (29.50523pt too wide) in paragraph at lines 216--216
+[]\OT1/cmtt/m/n/12 se <- sqrt( ( SSQ(x)+SSQ(y) ) / dft  ) * sqrt( (1/ (dfx+1)) 
++ (1/(dfy+1)) )[] 
+ []
+
+
+Overfull \hbox (54.20525pt too wide) in paragraph at lines 216--216
+[]\OT1/cmtt/m/n/12 # If  the difference in means is outside the null, we  # can
+not reject the null[] 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [35]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [36]
+Overfull \hbox (72.73026pt too wide) in paragraph at lines 216--216
+[]\OT1/cmtt/m/n/12 toePower <- function(n, d=0, Reps=100, eps=1, alpha=.05, B=1
+0000, data = "normal")[] 
+ []
+
+
+Overfull \hbox (10.98022pt too wide) in paragraph at lines 216--216
+[]\OT1/cmtt/m/n/12 y <- matrix( rgamma(n, shape = 9 , rate = 2) + d, ncol = Rep
+s, nrow = n)[] 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [37]
+[38]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [39]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [40]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [41]
+Overfull \hbox (48.03024pt too wide) in paragraph at lines 596--596
+[]\OT1/cmtt/m/n/12 #The output of this function is a list of  k matrices, each 
+of dimension f x B[] 
+ []
+
+[42]
+Overfull \hbox (23.33023pt too wide) in paragraph at lines 596--596
+[]\OT1/cmtt/m/n/12 #This holds the original coefficients The column of zeros at
+ the beginning[] 
+ []
+
+
+Overfull \hbox (4.80522pt too wide) in paragraph at lines 596--596
+[]\OT1/cmtt/m/n/12 #dist holds the empirical distribution for this contrast. Ea
+ch row is a[] 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [43]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [44]
+Overfull \hbox (41.85524pt too wide) in paragraph at lines 596--596
+[]\OT1/cmtt/m/n/12 #based on the empirical bootstrap distribution. Significance
+ level is defined[] 
+ []
+
+
+Overfull \hbox (17.15523pt too wide) in paragraph at lines 596--596
+[]\OT1/cmtt/m/n/12 #as the probability of rejecting a true null hypothesis (typ
+e one error).[] 
+ []
+
+
+Overfull \hbox (4.80522pt too wide) in paragraph at lines 596--596
+[]\OT1/cmtt/m/n/12 #f is the number of features per array and k is the number o
+f contrasts[] 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [45]
+Overfull \hbox (41.85524pt too wide) in paragraph at lines 596--596
+[]\OT1/cmtt/m/n/12 #If the contrast coefficient is not inside the interval, it 
+is not equivalent[] 
+ []
+
+) [46] (./TestofEquivalence.bbl [47
+
+
+]) [48] (./TestofEquivalence.aux
+(./Introduction.aux) (./Methods.aux) (./Application.aux) (./Analysis.aux)
+(./Conclusion.aux) (./Regression.aux) (./Code.aux))
+
+LaTeX Warning: There were multiply-defined labels.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 7236 strings out of 493848
+ 97471 string characters out of 3149207
+ 207222 words of memory out of 3000000
+ 10335 multiletter control sequences out of 15000+200000
+ 20085 words of font info for 84 fonts, out of 3000000 for 9000
+ 714 hyphenation exceptions out of 8191
+ 36i,19n,45p,2210b,511s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/local/texlive/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
+></usr/local/texlive/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
+</usr/local/texlive/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></
+usr/local/texlive/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></u
+sr/local/texlive/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></us
+r/local/texlive/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr
+/local/texlive/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/l
+ocal/texlive/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/loc
+al/texlive/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local
+/texlive/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/t
+exlive/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/tex
+live/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texli
+ve/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/
+2009/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/200
+9/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2009/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2009/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmsl12.pfb></usr/local/texlive/2009/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2009/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2009/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2009/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2009/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2009/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2009/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2009/texmf-dist/font
+s/type1/public/amsfonts/euler/eufm10.pfb></usr/local/texlive/2009/texmf-dist/fo
+nts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2009/texmf-dis
+t/fonts/type1/public/xypic/xyatip10.pfb></usr/local/texlive/2009/texmf-dist/fon
+ts/type1/public/xypic/xybtip10.pfb>
+Output written on TestofEquivalence.pdf (58 pages, 509373 bytes).
+PDF statistics:
+ 323 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 16 words of extra memory for PDF output out of 10000 (max. 10000000)
+

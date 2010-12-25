@@ -1,0 +1,64 @@
+\documentclass[12pt,twoside]{reedthesis}
+\usepackage{graphicx,latexsym}
+\usepackage[all]{xy}  
+\usepackage{amssymb,amsthm,amsmath}
+\usepackage{longtable,booktabs,setspace} 
+\usepackage{url}
+\usepackage{natbib}
+\usepackage{marginnote}
+\usepackage{listings}
+\usepackage[margin=10pt,font=small,labelfont=bf]{caption} 
+
+
+
+\newcommand{\I}{\;|\;}
+\newcommand{\PR}{\mathbf{P}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Var}{\mbox{Var}}
+\newcommand{\Ind}[1]{\mathbf{I}_{#1} }
+\DeclareMathOperator*{\argmax}{arg\,max}
+
+\title{Statistical Tests of Equivalence}
+\author{Andrew S. Winterman}
+
+\date{December 2010}
+\division{Mathematics and Natural Sciences}
+\advisor{Albyn Jones}
+\department{Mathematics}
+
+\setlength{\parskip}{0pt}
+
+\begin{document}
+
+\maketitle{}
+  \frontmatter
+  \pagestyle{empty} 
+
+
+ \chapter*{Acknowledgements}
+ I express my gratitude to my thesis adviser, Albyn Jones, for his insight and patient, relaxed attitude; to my family and friends, whose support helped make the thesis process far more enjoyable than I could have anticipated; and finally to Suzy Renn and the other members of the Summer 2010 Renn/Jones Lab.
+ 
+\tableofcontents
+
+\chapter*{Abstract}
+
+	Tests of equivalence are motivated and described in detail. Use of tests of equivalence for microarray data analysis is described. A non-parametric bootstrap test and a t-test of equivalence are described and compared against one another via simulation. The bootstrap test, although more computationally expensive, is found to be superior, even in cases when data is normal.
+
+  \mainmatter 
+  \pagestyle{fancyplain}
+  
+
+\include{Introduction}
+\include{Methods}
+\include{Application}
+\include{Analysis}
+\include{Conclusion}
+
+\appendix
+     \include{Regression}
+     \include{Code}
+
+
+\bibliography{TestofEquivalence}                                                                                                                                                \bibliographystyle{plain}                                                                                                                                                                              \nocite{*}
+
+\end{document}

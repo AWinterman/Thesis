@@ -1,0 +1,118 @@
+\begin{thebibliography}{10}
+
+\bibitem{adjaye}
+J.~Adjaye, R.~Herwig, D.~Herrmann, W.~Wruck, A.~Benkahla, T.~C. Brink,
+  M.~Nowak, J.~W. Carnwath, C.~Hultschig, H.~Niemann, and H.~Lehrach.
+\newblock Cross species hybridization of human and bovine orthologous genes on
+  high density cdna microarrays.
+\newblock {\em BMC Genomics}, 5:83, 2004.
+
+\bibitem{altman}
+D.G. Altman and J.M. Bland.
+\newblock Absence of evidence is not evidence of absence.
+\newblock {\em British Medical Journal}, 311:485, 1995.
+
+\bibitem{Intro}
+Lee~J. Bain and Max Englehardt.
+\newblock {\em Introduction to Probability and Mathematical Statistics}.
+\newblock Brooks/Cole, Cengage Learning, Belmont, California, second edition,
+  1992.
+
+\bibitem{FDR}
+Yoah Benjamini and Yosef Hochberg.
+\newblock Controlling the false discovery rate: a practical and powerful
+  approach to multiple testing.
+\newblock {\em Journal of the Royal Statistical Society}, 57(1):289--300, 1995.
+
+\bibitem{Regression}
+Peter~J. Bickel and Kjell~A. Doksum.
+\newblock {\em Mathematical Statistics: Basic Ideas and Selected Topics}.
+\newblock Holden-Day, Inc., Oakland, California, first edition, 1997.
+
+\bibitem{Birkett}
+D.J. Birkett.
+\newblock Generics - equal or not?
+\newblock {\em Australian Prescriber}, 26(4), 2003.
+
+\bibitem{BootstrapBook}
+Bradley Efron and Robert~J. Tibshirani.
+\newblock {\em An Introduction to the Bootstrap}.
+\newblock Chapman \& Hall, New York, NY, 1993.
+
+\bibitem{eijgelaar}
+W.~J. Eijgelaar, A.~J. Horrevoets, A.~P. Bijnes, M.J. Daemen, and W.~F.
+  Verhaegh.
+\newblock Equivalence testing in microarray analysis: similarities in the
+  transcriptome of human atherosclerotic and nonatherosclerotic macrophages.
+\newblock {\em Physiological Genomics}, 41:212 --223, January 12 2010.
+
+\bibitem{linear}
+Stephen~H. Friedberg, Arnold~J. Insel, and Lawrence~E. Spence.
+\newblock {\em Linear Algebra}.
+\newblock Pearson Education, Inc., Upper Saddle River, New Jersey 07458, fourth
+  edition, 2003.
+
+\bibitem{models}
+Ronald~R. Hocking.
+\newblock {\em The Analysis of Linear Models}.
+\newblock Wadsworth Inc., Belmont, California 94002, first edition, 1985.
+
+\bibitem{price}
+A.~M. Price, D.~F.~Aros Orellana, F.~M. Salleh, R.~Stevens, R.~Acock,
+  V.~Buchanan-Wollaston, A.~D. Stead, and H.~J. Rogers.
+\newblock A comparison of leaf and petal senescence in wallflower reveals
+  common and distinct patterns of gene expression and physiology.
+\newblock {\em Plant Physiology}, 147:1898 -- 912, 2008.
+
+\bibitem{QiuandCui}
+Jing Qiu and Xiangqin Cui.
+\newblock Evaluation of a statistical equivalence test applied to microarray
+  data.
+\newblock {\em Journal of Biopharmaceutical Statistics}, 20(2):240 --266, March
+  2010.
+
+\bibitem{R}
+{R Development Core Team}.
+\newblock {\em R: A Language and Environment for Statistical Computing}.
+\newblock R Foundation for Statistical Computing, Vienna, Austria, 2010.
+\newblock {ISBN} 3-900051-07-0.
+
+\bibitem{Renn}
+Susan C.~P. Renn, Nadia~Aubin Horth, and Hans~A Hofmann.
+\newblock Fish and chip: functional genomics of social plasticity in an
+  {A}frican cichlid fish.
+\newblock {\em The Journal of Experimental Biology}, 211:3041--3056, 2008.
+
+\bibitem{rodriguez}
+M.~Rodriguez-Lannety, W.~S. Phillips, S.~Dove, O.~Hoegh-Guldberg, and V.~M.
+  Weis.
+\newblock Analytical approach for selecting normalizing genes from a cdna
+  microarray platform to be used in q-rt-pcr assays: a cnidarian case study.
+\newblock {\em Journal of Biochemical and Biophysical Methods}, 70:985--991,
+  2007.
+
+\bibitem{microarray}
+Dari Shalon, Stephen~J. Smith, and Patrick O.~Brown ~.
+\newblock A dna microarray system for analyzing complex dna samples using two -
+  color fluorescent probe hybridization.
+\newblock {\em Genome Research}, 6:639--645, 1996.
+
+\bibitem{LIMMA}
+Gordon~K. Smyth.
+\newblock Limma: linear models for microarray data.
+\newblock In R.~Gentleman, V.~Carey, S.~Dudoit, and W.~Huber R.~Irizarry,
+  editors, {\em Bioinformatics and Computational Biology Solutions using R and
+  Bioconductor}, pages 397--420. Springer, New York, 2005.
+
+\bibitem{wellek}
+Stefan Wellek.
+\newblock {\em Testing Statistical Hypotheses of Equivalence and
+  Noninferiority}.
+\newblock Chapman \& Hall/CRC, Boca Raton, FL, second edition, 2010.
+
+\bibitem{Wirth:2000}
+Anthony~Ian Wirth.
+\newblock {\em A Plasmodium falciparum Genefinder: Honours research project}.
+\newblock Honours thesis, University of Melbourne, 2000.
+
+\end{thebibliography}

@@ -1,0 +1,51 @@
+This is BibTeX, Version 0.99c (TeX Live 2009)
+The top-level auxiliary file: TestofEquivalence.aux
+A level-1 auxiliary file: Introduction.aux
+A level-1 auxiliary file: Methods.aux
+A level-1 auxiliary file: Application.aux
+A level-1 auxiliary file: Analysis.aux
+A level-1 auxiliary file: Regression.aux
+A level-1 auxiliary file: Code.aux
+The style file: plain.bst
+Database file #1: TestofEquivalence.bib
+You've used 19 entries,
+            2118 wiz_defined-function locations,
+            637 strings with 7493 characters,
+and the built_in function-call counts, 6251 in all, are:
+= -- 590
+> -- 345
+< -- 1
++ -- 140
+- -- 116
+* -- 453
+:= -- 1097
+add.period$ -- 59
+call.type$ -- 19
+change.case$ -- 111
+chr.to.int$ -- 0
+cite$ -- 19
+duplicate$ -- 223
+empty$ -- 459
+format.name$ -- 116
+if$ -- 1279
+int.to.chr$ -- 0
+int.to.str$ -- 19
+missing$ -- 23
+newline$ -- 99
+num.names$ -- 40
+pop$ -- 107
+preamble$ -- 1
+purify$ -- 94
+quote$ -- 0
+skip$ -- 140
+stack$ -- 0
+substring$ -- 315
+swap$ -- 29
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 64
+warning$ -- 0
+while$ -- 51
+width$ -- 21
+write$ -- 220

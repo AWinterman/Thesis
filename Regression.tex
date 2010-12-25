@@ -1,0 +1,169 @@
+\chapter{ Linear Regression }
+\label{Linear Regression}
+Linear regression is designed to analyze experiments in which each of $n$ responses is supposed to be a consequence of a set of $m$ explanatory variables. We usually suppose that there are at least as many responses as explanatory variables, i.e. $n >m$, otherwise we have fewer equations than variables and the system has no unique solution. In fact, if it is the case that there are fewer response variables than explanatory variables, it would behoove the statistician to advise the scientist to cary out more runs of the experiment. The collection of responses is written down in an $n \times 1$ vector called $Y$, and the explanatory variables are written down in an $n \times m$ matrix, $X$, called the design matrix. As this is a linear model, we suppose $X$ and $Y$ are linearly related to each other, and subject to random error, $\delta$. $X$ is referred to as the design matrix. One might express the supposed relationship between $X$ and $Y$ as follows: 
+\begin{eqnarray} y_i = \beta_1 + \beta_2 x_{i2} + \beta_3x_{i3} + \dots + \beta_m x_{im} + \delta_i  \quad : \quad i = 1, \dots , n \;.\label{LinearModel} \end{eqnarray} 
+The $\beta_j$ are unknown quantities referred to as the ``regression coefficients.'' Note that in order to accommodate an intercept term  $x_{i1}$ is assumed to be unity for $i = 1, \dots, n$. It will simplify matters down the road to use matrix notation:\footnote{for a review of matrices and linear algebra, see \cite{linear}. I will use results and definitions from this text liberally.} \begin{eqnarray} Y = X \, \beta + \delta \,, \label{MatrixLM} \end{eqnarray}
+where $\beta$ is the $m \times 1$ vector of $\beta_j$'s. In the standard linear model, one assumes that error is independently, identically normally distributed with variance $\sigma^2$: 
+\begin{eqnarray}  \delta \thicksim N( \mathbb{O} \;,\; \mathbb{I} \, \sigma^2) \,, \label{MatrixError}\end{eqnarray}
+where $\mathbb{I}$ is the identity matrix in $\mathbb{R}^n $ and $ N(\mathbb{O} \,,\, \mathbb{I} \, \sigma^2)$ is the multivariate normal distribution with mean equal to the zero vector and covariance matrix  $ \mathbb{I} \, \sigma^2$.
+
+The end goal of carrying out a linear regression is to obtain an estimator for $\beta$, call it $\hat{\beta}$. $\hat{\beta}$ is the $m$-dimensional analogue to the slope of the line which best fits the data. The basic idea is to minimize the distance between any data point and the ``line;" that is to minimize the magnitude of the \emph{residuals}: $\mathbf{r} = Y-\hat{\beta} \,X$. The residuals vector is given by solving \ref{MatrixLM} for $\delta$. 
+
+We will later show that $X \, \hat{\beta}$ is an unbiased\footnote{ An estimator $\hat{\theta}$ of $\theta$ is unbiased if $\mathbb{E}(\hat{\theta}) = \theta$} estimator for $Y$. For this reason, we say: \begin{eqnarray} \label{fitted} \hat{Y} = X \hat{\beta}\;, \end{eqnarray}and call the entries of $\hat{Y}$ ``fitted values." The residuals are a measure of how close the fitted values are to the actual values of $Y$.
+
+There are a number of methods by which the minimization of residuals can be done. Ordinary least squared error regression is described here. The sum of the squared residuals, \begin{eqnarray} \label{squaredresidual} \mathbf{r}^t\mathbf{r}=(Y-\hat{\beta} \,X)^t(Y-\hat{\beta} \,X) \,,\end{eqnarray} is minimized with respect to $\hat{\beta}$. 
+
+In algebraic terms, choosing $\hat{\beta}$ which minimizes the sum of squared residuals is the same as choosing the vector in the column space of $X$ closest to $Y$ \cite{Regression}.  If one were to draw a cartoon of the situation, imagine we are in three space, and that the columns of $X$ span the $x$-$y$ plane. $Y$ floats somewhere above the plane. $X \hat{\beta}$ is directly below $Y$. It should be clear to see that the vector $Y - X \hat{\beta}$ is perpendicular to every vector in the column space of $X$. This yields the condition: 
+$ X^t (Y - X\hat{\beta}) = \mathbb{O}\,. $ 
+Solving for $\hat{\beta}$ :
+\[  X^t Y = X^t X \hat{\beta} \,.\]
+So long as $X$ (an $n \times m$ matrix) has rank $m$, we can left multiply by $(X^t X)^{-1}\,,$ obtaining:
+\begin{eqnarray} \label{CoeffEst} \hat{\beta} = (X^t X)^{-1} X^t Y\,,\end{eqnarray}
+leading to fitted values 
+\begin{eqnarray} \label{Fitted}
+ \hat{Y} =  X (X^t X)^{-1} X^t Y \,,
+ \end{eqnarray}
+ and residuals: 
+\begin{eqnarray} \label{residual}
+ \mathbf{r} = Y - X (X^t X)^{-1} X^t Y = (\mathbb{I} - X (X^t X)^{-1} X^t )Y\,. 
+ \end{eqnarray}
+ Additionally, we can compute the standard error of the residuals, $s$:
+ \begin{eqnarray} 
+ \label{s2} s = \sqrt{ \frac{\mathbf{r}^t\mathbf{r}}{n-m} }\,,
+ \end{eqnarray}  
+ 
+Let us examine $\hat{Y}$, $\hat{\beta}$ and $\mathbf{r}$ a little more closely. $\hat{\beta}$ is the vector of linear combinations of the columns of $X$ which is closest to $Y$, and $\hat{Y}$ is in the column space of $X$. Recall that $ \hat{Y} =  X (X^t X)^{-1} X^t Y \,.$  On this ground I assert that the operator $ X (X^t X)^{-1} X^t$, let it be called $\mathbb{H}$, is an operator which picks out the element in the column space of $X$ closest to the input vector from $\mathbb{R}^n$; that is, if each $X_i$ is the $i^{th}$ column of $X$, then \[\mathbb{H}:\mathbb{R}^n \longrightarrow \mbox{Span}(X_1, \dots, X_m)\,,\]  is a projection operator into $\mbox{Span}(X_1, \dots, X_m) $, an $m$-dimensional subspace of $\mathbb{R}^n$. 
+%must read linear algebra book to back these kind of statements up.
+
+The proof of the above assertion is easy. First, the proposition that the matrix representation of any linear operator maps into its column space follows directly from the definition of matrix multiplication. Let $A$ be an $n \times m$ matrix and $B$ be an $m \times p$ matrix. Let  $A_{ij}$ be the $ij^{th}$ entry of the matrix $A$, and likewise for $B_{ij}$ and $(AB)_{ij}$. Then matrix multiplication is defined by:
+ \[ (AB)_{ij} = \displaystyle\sum_{k=1}^n A_{ik} \, B_{kj} \, ; \qquad 1 \leq i \leq m \,,\, 1\leq j \leq p \,.\]
+In particular, $\beta$ is $m \times 1$ and $X$ is $n \times m$. Hence $X\beta$ is $n \times 1$ and: \begin{eqnarray} (X \, \beta)_{i} &=& \displaystyle\sum_{k=1}^m X_{ik} \, \beta_{k}  ; \qquad 1 \leq i \leq m  \end{eqnarray}
+
+\begin{equation}  \Rightarrow X \beta = \left( \begin{array}{c} \displaystyle\sum_{k=1}^m X_{1k} \, \beta_{k} \\ \vdots \\ \displaystyle\sum_{k=1}^m X_{mk} \, \beta_{k}  \end{array}\right) =  \displaystyle\sum_{k=1}^m \left( \begin{array}{c} X_{1k} \,  \\ \vdots \\  X_{mk} \end{array}\right) \beta_{k}, \end{equation}
+which is a linear combination of the columns of X, proving the assertion.
+
+Let us specify what it means to say that $H$ is a projection operator. Given a subspace $\mathbb{U}$ of a vector space $\mathbb{V}$, there is another subspace $\mathbb{W}$ such that any vector $V \in \mathbb{V}$ can be written as the sum of a vector $U$ in $\mathbb{U}$ and a vector $W$ in $\mathbb{W}$.  A projection operator \[ \mathfrak{p} :  \mathbb{V} \rightarrow \mathbb{V} \] can be characterized fundamentally by the property that given $V \in \mathbb{V}$, 
+ \[ \mathfrak{p}(V) = U\,,\] 
+ where  $V = U + W\,,$ and of course $U \in \mathbb{U} \;, \; W \in \mathbb{W}$. When this is the case, we say $\mathfrak{p}$ is a projection on $\mathbb{U}$ along $\mathbb{W}$. Consequently, $ \mathfrak{p}(U) = U$, and hence $ \mathfrak{p}^2(U + W) =  \mathfrak{p}(U) = U \,$. In fact,
+ \begin{eqnarray} \label{projectioncondition}  \mathfrak{p}^2 =  \mathfrak{p}\end{eqnarray}
+ is not only necessary but also a sufficient condition to prove that $ \mathfrak{p}$ is a projection. 
+ 
+ We have already shown that \ref{projectioncondition} is necessary given that $\mathfrak{p}$ is a projection. Now let us show that it is sufficient:
+ 
+ Suppose $\mathfrak{p}^2 =  \mathfrak{p}$ for some linear operator, $\mathfrak{p} : \mathbb{V} \rightarrow \mathbb{V}$. Then I propose that there exists subspaces $\mathbb{U}$ and $\mathbb{W}$ such that any vector $V$ in $\mathbb{V}$ can be written as the sum of $U \in \mathbb{U}$ and $W \in \mathbb{W}$, and $\mathfrak{p}(V) = U$.
+ 
+ Let us note a few facts at our finger tips:  Condition \ref{projectioncondition} implies that the range of $\mathfrak{p}$ is invariant under transformation by $\mathfrak{p}$. Further the null space, or kernel, of $\mathfrak{p}$ is, by definition, always mapped to the zero vector. Both the range and the kernel, let us denote them by $R(\mathfrak{p})$ and $N(\mathfrak{p})$ respectively, are subspaces\footnote{They are clearly subsets of $\mathbb{V}$. The vector space axioms, found on page six of \cite{linear} are easily verified by the reader.} of the vector space $\mathbb{V}$, and finally, $\mathbb{V} = N(\mathfrak{p})  \oplus R(\mathfrak{p})$ that is, $\mathbb{V}$ is the direct sum of the range and null space of $\mathfrak{p}$. Taking this all together, we have that $\mathfrak{p}$ is a projection on its range along its null space, and hence $\mathfrak{p}^2 = \mathfrak{p} \Rightarrow \mathfrak{p}$ is a projection.
+ 
+To demonstrate that $\mathbb{H}$  is a projection, we need only check if it satisfies  \ref{projectioncondition} :
+
+\begin{eqnarray}
+\mathbb{H}^2 =  X (X^t X)^{-1} X^t  X (X^t X)^{-1} X^t = X (X^t X)^{-1}X^t = \mathbb{H}
+\end{eqnarray}
+
+Hence $\mathbb{H}$ is a projection operator.
+
+The residuals, $\mathbf{r}$ are obtained by passing $Y$ through the operator: $(\mathbb{I} - X (X^t X)^{-1} X^t ) = \mathbb{I} - \mathbb{H} $. This operator is also a projection operator:
+\begin{eqnarray}
+(\mathbb{I} - \mathbb{H})(\mathbb{I} - \mathbb{H}) = \mathbb{I} - \mathbb{H} - \mathbb{H} + \mathbb{H}^2 = \mathbb{I} - \mathbb{H}\,.
+\end{eqnarray}
+Furthermore $\mathbb{H}$ and $\mathbb{I} - \mathbb{H}$ are orthogonal to one another: $\mathbb{H} (\mathbb{I} - \mathbb{H}) = \mathbb{H} - \mathbb{H}^2 = \mathbb{H} - \mathbb{H} = \mathbb{O}$. From this it follows that $\mathbb{H}$ and $\mathbb{I} - \mathbb{H}$ map any vector in $\mathbb{R}^n$ to orthogonal vectors. In fact, this property demonstrates that the image of $\mathbb{H}$ and $\mathbb{I} - \mathbb{H}$, call them $\mathbb{U}$ and $\mathbb{V}$ respectively, are \emph{orthogonal} subspaces. Orthogonal subspaces have a handy property: suppose  $W \in \mathbb{R}^n$, and that there exists  $ U \in \mathbb{U}$ and $V \in \mathbb{V}$, such that $ W = U + V$. Consider $W^t W$: 
+\begin{eqnarray} 
+W^t W & = & (U + V)^t(U + V)  \nonumber \\
+& = & U^t U + V^t V \nonumber  \\
+& \Rightarrow & \nonumber \\
+\| W \|^2 &=& \| U \| ^2 + \| V \|^2
+\end{eqnarray}
+As a consequence,  given $Y = \mathbb{H}Y + (\mathbb{I} - \mathbb{H})Y$, we know:
+\begin{eqnarray} \label{pythagoras} \| Y \|^2 = \| \mathbb{H}Y \| ^2 + \| (\mathbb{I} - \mathbb{H})Y \|^2  \end{eqnarray}
+
+\section{Distributional Results}
+\label{Distributional Results}
+For the purpose of assessing p-values down the road, it is worthwhile to write down a few distributional results. Ultimately we will find a statistic with the Student's $t$ distribution which we will use in the parametric two one sided $t$-test of equivalence (T.O.S.T) and to generate the sample distribution used in the Bootstrap test.
+
+For a random vector $\xi$ and a matrix $A$, the following holds true for the expeced value, $\mathbb{E}\,$ and Covariance,  \mbox{Cov}: 
+\begin{eqnarray} \label{Mean}
+\mathbb{E}( A \xi) &=& A \, \mathbb{E}(\xi) \\ \label{Cov} \mbox{Cov}( A \xi) & = &A\, \mbox{Cov}(\xi) \,A^t \,.
+\end{eqnarray}
+Additionally, for independent random variables, $Z_i \thicksim N(0\,,\,1)\; ;\;  i = 1, \dots , k $,  $Q \thicksim N(\mu\,,\, \sigma^2)$ and $V \thicksim \chi^2(\nu)$, where $\chi^2(\nu)$ is the chi squared distribution with $\nu$ degrees of freedom,\footnote{If this is all gibberish to you, you should investigate an introductory text on probability and statistics. In particular, for more information on the topics of covariance, expected values, distributions of random variables and the effect of arithmetic operations on random variables' distributions see PAGES of \cite{Intro}} the following is true:
+\begin{eqnarray}
+\frac{Q - \mu}{\sigma} & \thicksim & N(0\,,\,1)\,, \\
+\displaystyle\sum_{i=1}^{j} Z_i^2 & \thicksim & \chi^2(j)\,, \label{chisquared} \\
+\frac{Z_i}{ \sqrt{  V/ \nu } }& \thicksim& t(\nu)\,, \label{studentst} \\
+\end{eqnarray}
+where $t(\nu)$ is the student's $t$ distribution with $\nu$ distribution. These results generalize to the multidimensional case in the natural way, that is, term by term. Finally, given $\xi \in \mathbb{R}^n$ such that $\xi \thicksim N(\mathbb{O}, \mathbb{I}\sigma^2)$, and a projection operator  $\mathfrak{p} : \mathbb{R}^n \rightarrow \mathbb{R}^k$ which sends the random vector $\xi$ to the $k$-dimensional random vector $\zeta$,
+\begin{eqnarray} \| \mathfrak{p} \xi \|^2 = \displaystyle\sum_{i=1}^{n} \zeta_i^2 \thicksim \sigma^2 \chi^2(k) \,, \label{scaledchi} \end{eqnarray}
+where $\sigma^2 \chi^2(k)$ is a scaled chi squared distribution with $k$ degrees of freedom. 
+
+Armed with these results let us enumerate the distributions of $\hat{\beta}\,,\, \mathbf{r}^t\mathbf{r}$ and $ \mathbf{r}$, and compute from these a Student's $t$ statistic. To begin, note: $ Y \thicksim \mathbb{N}( X \beta \, ,\, \sigma^2)$
+\begin{enumerate}
+
+\item The coefficient vector, $\hat{\beta}.$
+ \newline \newline The coefficient vector is obtained from $Y$ by a series of linear transformations by fixed values (i.e. not random variables), so it will be normally distributed and we need only calculate its mean and variance to fully specify its distribution.
+ 
+  Mean: \begin{equation} \mathbb{E}( \hat{\beta})  =  (X^t X)^{-1} X^t \mathbb{E}(Y)  \\ = (X^t X)^{-1} X^t X \beta = \beta \end{equation}
+Variance:
+ \begin{eqnarray} \mbox{Cov}( \hat{\beta})  &=&   \mbox{Cov}((X^t X)^{-1} X^t Y) \nonumber \\  &=&   (X^t X)^{-1} X^t \mbox{Cov} (Y) ( (X^t X)^{-1} X^t)^t  \nonumber \\ &=&  (X^t X)^{-1} X^t \sigma^2\mathbb{I} (X (X^t X)^{-1})  \nonumber \\ &=& \sigma^2 (X^t X)^{-1} \\
+& \Rightarrow & \hat{\beta} \thicksim \mathbb{N}(\beta, \sigma^2 (X^t X)^{-1} ) 
+ \end{eqnarray} 
+ \item Residuals, $\mathbf{r}$.
+ \newline
+ \newline
+Like the coefficient vector before it, the residuals are obtained linearly from $Y$. Once again, we need only calculate mean and variance:
+ 
+ Mean:
+ \newline \newline
+ $\mathbf{r}= Y - X \hat{\beta}$ can be rewritten: $\mathbf{r} = Y - \hat{Y}$. Sine $\mathbb{E}$ is linear:
+ \begin{eqnarray}
+ \mathbb{E}(\mathbf{r}) = \mathbb{E}(Y) - \mathbb{E}(\hat{Y}) = X \beta - X \beta = 0
+\end{eqnarray}  
+Variance:
+\newline
+\newline
+Recall:
+\[ \mathbf{r} = (\mathbb{I} - \mathbb{H}) Y \,.\]
+Evaluating covariance of $\mathbf{r}$:
+\begin{eqnarray}
+\mbox{Cov}(\mathbf{r}) &=& \mbox{Cov}( (\mathbb{I} - H) Y ) \nonumber \\ &=& (\mathbb{I} - H ) \mbox{Cov}(Y) (\mathbb{I} - H )^t \nonumber \\ &=&  (\mathbb{I} - H ) \sigma^2 \mathbb{I} (\mathbb{I} - H )^t \nonumber \\ &=&  (\mathbb{I} - H )^2 \sigma^2 \nonumber \\ &=&  \sigma^2 (\mathbb{I} - H )
+\end{eqnarray}
+Hence, \begin{eqnarray} \mathbf{r} \thicksim N(0\,, \,\sigma^2 (\mathbb{I} - H ) ) \label{residualdistribution} \end{eqnarray}
+
+\item Sum of Squared Residuals: $ \mathbf{r}^t\mathbf{r} $
+\newline \newline 
+
+Recall $\mathbf{r} = (\mathbb{I}- \mathbb{H}) Y  = (\mathbb{I}- \mathbb{H}) (\hat{Y} + \delta )\,.$ By orthogonality, $(\mathbb{I}- \mathbb{H}) \hat{Y} = (\mathbb{I}- \mathbb{H}) \mathbb{H} Y = 0 \,,$ and $(\mathbb{I}- \mathbb{H}) Y  = (\mathbb{I}- \mathbb{H}) \delta$  hence $ \mathbf{r}^t\mathbf{r} = \|\mathbf{r}\|^2 = \| (\mathbb{I}- \mathbb{H})\delta \|^2 $, whose distribution is given by \ref{scaledchi}. We need only determine the dimension of the image of $(\mathbb{I}- \mathbb{H})$. On the assumption that $X$ is of full rank, $m$, $\mathbb{H}$ maps into an $m$ dimensional space. Hence the null space of $\mathbb{H}$, the co-domain of $(\mathbb{I}- \mathbb{H})$ has dimension $n-m$, and the distribution of the squared residuals is given by: 
+
+\begin{eqnarray}  \mathbf{r}^t\mathbf{r} =  \| (\mathbb{I}- \mathbb{H})Y\|^2 \thicksim \sigma^2 \chi^2(m - n). \end{eqnarray}
+
+\item The Student's $t$ Statistic
+\newline \newline
+By \ref{studentst} a statistic with Student's $t$ distribution can be constructed from statistics with standard normal and Chi squared distributions. We have:
+ \[\hat{\beta} \thicksim \mathbb{N}(\beta, \sigma^2 (X^t X)^{-1} ).\] Thus each component of $\hat{\beta}$ is normally distributed, and has standard error: 
+ \[ \mbox{SE}(\hat{\beta}_j) = s \sqrt{ (X^t X)_{jj}^{-1}}\]
+where $s$, as defined in equation \ref{s2} on page \pageref{s2} is the residual standard error: $ s = \sqrt{\mathbf{r}^t\mathbf{r} }/ (m-n)$. $\hat{\beta}_j$ and $\mbox{SE}(\hat{\beta}_j)$ are independent of each other.
+
+The residual sum of squares, $ \mathbf{r}^t \mathbf{r}\thicksim \sigma^2 \chi^2(m - n)$, from which it follows that: $ \mathbf{r}^t \mathbf{r}/\sigma^2  \thicksim \chi^2(m - n)$
+
+A Student's $t$ statistic is constructed as follows.
+\begin{eqnarray}
+\frac{\hat{\beta}_j -\beta_j}{\mbox{SE}(\hat{\beta}_j)} &= & \frac{\hat{\beta}_j -\beta_j}{\mbox{SE}(\hat{\beta}_j)}\bigg(\frac{\sigma}{\sigma} \bigg) \nonumber \\ \nonumber \\
+&=& \frac{\hat{\beta}_j -\beta_j / \sigma\, \sqrt{ \left(X^t X \right)_{jj}^{-1}}}{\sqrt{s^2/\sigma^2) }}
+\\ \nonumber \\
+&=& \frac{ (\hat{\beta}_j -\beta_j) / \sigma \sqrt{ \left( X^t X \right)_{jj}^{-1}}}
+{
+\sqrt {  \frac{ \mathbf{r} ^t \mathbf{r} }
+{ \sigma^2  } / \scriptstyle{(n-m)} }
+}
+\end{eqnarray}
+The numerator has a standard normal distribution. The denominator is a Chi squared distribution divided by it's degrees of freedom.
+
+Hence, \begin{eqnarray} \label{t-stat}
+\tau_j(\beta_j) = \frac{\hat{\beta}_j -\beta_j}{s^2\sqrt{ (X^t X)_{jj}^{-1}}} \quad ; \quad \mbox{for}\  j = 1, \, \ldots, \, m
+\end{eqnarray}
+has a Student's $t$ distribution with $(m-n)$ degrees of freedom.
+
+\end{enumerate}
+
+
+
+
+
